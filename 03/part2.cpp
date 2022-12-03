@@ -69,9 +69,9 @@ int main() {
         bool inventory[53] = {false};
 
         for(int i = 0; i < line.length(); i++) {
-            char compartmentAatI = line.at(i);
-            int aIndex = priority(compartmentAatI);
-            inventory[aIndex] = true;
+            char bagAtI = line.at(i);
+            int index = priority(bagAtI);
+            inventory[index] = true;
         }
 
         /*
