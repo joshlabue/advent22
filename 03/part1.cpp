@@ -40,24 +40,25 @@ int main() {
         std::string lineB = lines[l].substr(lines[l].length()/2);
 
         /*
-        Item Cache
+        Item Inventory 
         Keeps track of which letters are in each bag.
-        Useful because it allows for very fast checks if an item exists in the bag.
         */
-        int cache[53] = {0};
+        int inventory[53] = {0};
 
         // Take inventory of each item in the first compartment
         for(int i = 0; i < lineA.length(); i++) {
             char compartmentAatI = lineA.at(i);
             int aIndex = priority(compartmentAatI);
-            cache[aIndex]++;
+            inventory[aIndex]++;
         }
 
         // Then, step through the second compartment until a common item is found.
         for(int i = 0; i < lineA.length(); i++) {
             char compartmentBatI = lineB.at(i);
             int bIndex = priority(compartmentBatI);
-            if(cache[bIndex] > 0) {
+            
+            // If the item was found in compartment A's inventory
+            if(inventory[bIndex] > 0) {
                 sum += bIndex;
                 break;
             }

@@ -45,48 +45,48 @@ int main() {
     }
 
     /*
-    Group cache: Keeps track of which types of items exist in the groups of 3.
+    Group inventory: Keeps track of which types of items exist in the groups of 3.
     */
-    int groupCache[53] = {0};
+    int groupInventory[53] = {0};
 
     for(int l = 0; l < lines.size(); l++) {
 
         /*
-        If this is the first member of the group, clear the cache.
+        If this is the first member of the group, clear the inventory.
         */
         if(l % 3 == 0) {
-            for(int i = 0; i < 53; i++) groupCache[i] = 0;
+            for(int i = 0; i < 53; i++) groupInventory[i] = 0;
         }
 
         std::string line = lines[l];
         
         /*
-        Individual member's cache
+        Individual member's inventory 
         At each index,
             false means the item is not in the member's bag
             true means the item is in the member's bag
         */
-        bool cache[53] = {false};
+        bool inventory[53] = {false};
 
         for(int i = 0; i < line.length(); i++) {
             char compartmentAatI = line.at(i);
             int aIndex = priority(compartmentAatI);
-            cache[aIndex] = true;
+            inventory[aIndex] = true;
         }
 
         /*
-        Record the presence of each type of item in the group cache.
+        Record the presence of each type of item in the group inventory.
         
-        If any item's value in the group cache is 3, it means that all
+        If any item's value in the group inventory is 3, it means that all
         three group members had at least one of the item, making that
         item the group's badge type.
 
         Add the priority of the badge to the sum.
         */
         for(int i = 0; i < 53; i++) {
-            groupCache[i] += cache[i];
+            groupInventory[i] += inventory[i];
 
-            if(groupCache[i] == 3) {
+            if(groupInventory[i] == 3) {
                 sum += i;
                 break;
             }
