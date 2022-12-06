@@ -42,8 +42,8 @@ int main() {
         /*
         Count the number of 1 bits in the bit vector
         */
-        for(int i = 0; i < 32; i++) {
-            if(uniqueCharVector >> i & 1) numHighBits++;
+        for(int bit = 0; bit < 32; bit++) {
+            if(uniqueCharVector >> bit & 1) numHighBits++;
         }
 
         /*
